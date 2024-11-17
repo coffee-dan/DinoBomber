@@ -15,7 +15,6 @@ export default class Game{
         this.enemies = new Enemy({x:64, y:64, game:this})
         this.key = new KeyHandler(this.dino).keys;
         this.explosion = [];
-        console.log(this.map.obstacles())
     }
 
     start(){

@@ -23,13 +23,13 @@ export default class MovingObjects{
 
         switch (direction) {
         case MovingObjects.Direction.up:
-            return this.game.map.emptyTile(j, i-1)
+            return this.game.map.emptyTile(j, i-1) && this.game.map.emptyTile(j+3, i-1)
         case MovingObjects.Direction.down:
-            return this.game.map.emptyTile(j+3, i+4)
+            return this.game.map.emptyTile(j, i+4) && this.game.map.emptyTile(j+3, i+4)
         case MovingObjects.Direction.left:
-            return this.game.map.emptyTile(j-1, i)
+            return this.game.map.emptyTile(j-1, i) && this.game.map.emptyTile(j-1, i+3)
         case MovingObjects.Direction.right:
-            return this.game.map.emptyTile(j+4, i+3)
+            return this.game.map.emptyTile(j+4, i) && this.game.map.emptyTile(j+4, i+3)
         }
 
         return false
