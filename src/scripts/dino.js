@@ -34,26 +34,26 @@ export default class Dino extends MovingObjects {
 
     move(key){
 
-        if (key['ArrowUp']&& this.canMoveUp()) {
+        if (key['ArrowUp']&& this.canMove(Dino.Direction.up)) {
 
             this.y -= this.speed;
             this.width = 21;
             this.height = 29;
             this.frameY = 2.93;
         }
-        if (key['ArrowLeft'] && this.canMoveLeft()) {
+        if (key['ArrowLeft'] && this.canMove(Dino.Direction.left)) {
             this.x -= this.speed;
             this.width = 24;
             this.height = 28;
             this.frameY = 0;
         }
-        if (key['ArrowRight'] && this.canMoveRight()) {
+        if (key['ArrowRight'] && this.canMove(Dino.Direction.right)) {
             this.x += this.speed;
             this.width = 24;
             this.height = 28;
             this.frameY = 1;
         }
-        if (key['ArrowDown'] && this.canMoveDown()) {
+        if (key['ArrowDown'] && this.canMove(Dino.Direction.down)) {
             this.y += this.speed
             this.width = 21;
             this.height = 29;

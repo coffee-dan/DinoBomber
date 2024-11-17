@@ -1,11 +1,5 @@
 import MovingObjects from "./movingObjects";
-const Direction= {
-    up: 0,
-    down: 1,
-    left: 2,
-    right: 3,
-}
-export default class Enemy extends MovingObjects{
+export default class Enemy extends MovingObjects {
 
     constructor(object){
         super(object)
@@ -29,58 +23,51 @@ export default class Enemy extends MovingObjects{
         enemySprite.src = 'src/assets/soldierAndBomb.png'
     }
 
-    randomMove(){
-        //sometimtes it will stuck for a few sec, need to fix later
+    randomMove() {
+        const nextDir = this.getNextDirection()
 
-        this.swithDir()
+        if (this.cannotMove(nextDir)) return
 
+        this.currentDir = nextDir
 
-        if (this.currentDir === Direction.up && this.canMoveUp()){
-            // console.log('moving up')
+        switch (this.currentDir) {
+        case Enemy.Direction.up:
             this.y -= this.speed;
             this.width = 22;
             // this.height = 27;
             this.frameY = 3;
-        };
-        if (this.currentDir === Direction.down && this.canMoveDown()){
-            // console.log('moving down')
+            break;
+        case Enemy.Direction.down:
             this.y += this.speed;
             this.width = 22;
             // this.height = 27;
             this.frameY = 2;
-
-        };
-        if (this.currentDir === Direction.left && this.canMoveLeft()){
-            // console.log('moving left')
+            break;
+        case Enemy.Direction.left:
             this.x -= this.speed;
             this.width = 25;
             // this.height = 27;
             this.frameY = 0;
-        };
-        if (this.currentDir === Direction.right && this.canMoveRight()){
-            // console.log('moving right')
+            break;
+        case Enemy.Direction.right:
             this.x += this.speed;
             this.width = 26;
             // this.height = 27;
             this.frameY = 1;
+            break;
         }
-
     }
 
-    swithDir() {
-
-        const dir = this.availableMove()
-        if(this.counter === 0){
-            this.currentDir = dir[this.getRandomInt(0, dir.length)]
-           this.counter = 4;
-
-        }else{
-
-            this.counter -= 1;
+    getNextDirection() {
+        const moves = this.availableMoves()
+        if (this.counter === 0) {
+           this.counter = 4
+           return moves[this.getRandomInt(0, moves.length)]
+        } else {
+           this.counter -= 1
+           return this.currentDir
         }
-
     }
-
 
    getRandomInt(min, max) {
         min = Math.ceil(min);
@@ -89,14 +76,12 @@ export default class Enemy extends MovingObjects{
         //The maximum is exclusive and the minimum is inclusive
     }
 
-    availableMove(){
+    availableMoves() {
         const moves = []
-        if(this.canMoveUp()){moves.push(0)}
-        if (this.canMoveDown()) {moves.push(1)}
-        if(this.canMoveLeft()) {moves.push(2)}
-        if (this.canMoveRight()) {moves.push(3)}
+        if (this.canMove(Enemy.Direction.up)) {moves.push(Enemy.Direction.up)}
+        if (this.canMove(Enemy.Direction.down)) {moves.push(Enemy.Direction.down)}
+        if (this.canMove(Enemy.Direction.left)) {moves.push(Enemy.Direction.left)}
+        if (this.canMove(Enemy.Direction.right)) {moves.push(Enemy.Direction.right)}
         return moves
     }
-
-
 }
