@@ -1,6 +1,6 @@
 
-export default class Map{
-    constructor(){
+export default class Map {
+    constructor() {
         this.cols = 60
         this.rows = 44
         this.tileSize = 16
@@ -54,7 +54,7 @@ export default class Map{
         //dino size is prob 64
     }
 
-   draw(ctx){
+   draw(ctx) {
         const map = new Image()
 
         map.addEventListener('load', () => {
@@ -62,9 +62,9 @@ export default class Map{
             ctx.drawImage(map, 0, 0, 960, 704, 0, 0, 960, 704)
         })
        map.src = "src/assets/newMap2.png";
-   }
+    }
 
-    getRow(pos){
+    getRow(pos) {
        //takes in this.y
        //420 will be on row 26
        return Math.floor(pos / this.tileSize);
@@ -74,16 +74,15 @@ export default class Map{
         //takes in this.x
         //660 will be on col 41
         return Math.floor(pos / this.tileSize);
-
     }
-    getIndex(posX, posY){
+
+    getIndex(posX, posY) {
         let row = this.getRow(posY);
         let col = this.getCol(posX);
         return row * this.cols + col;
-
     }
 
-    emptyTile(colX, rowY){
+    emptyTile(colX, rowY) {
         let idx = rowY * this.cols + colX;
         return this.tiles[idx] === 0
     }

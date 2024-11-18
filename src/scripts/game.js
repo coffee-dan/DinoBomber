@@ -12,7 +12,7 @@ export default class Game{
         this.paused = false;
         this.map = new Map();
         this.dino = new Dino({x:832, y:576, game: this});
-        this.enemies = new Enemy({x:64, y:64, game:this})
+        this.enemy = new Enemy({x:64, y:64, game:this})
         this.key = new KeyHandler(this.dino).keys;
         this.explosion = [];
     }
@@ -34,7 +34,7 @@ export default class Game{
             if(this.dino.status === 'burned'){
                 message = 'Game Over! You are burned!'
 
-            }else if(!this.enemies.status){
+            }else if(!this.enemy.status){
                 message = 'You Win! You are unbeatable!'
 
             }else{
@@ -65,10 +65,10 @@ export default class Game{
             this.map.draw(this.ctx);
             this.dino.draw(this.ctx);
             if (!this.end) {
-                this.enemies.draw(this.ctx)
-                this.enemies.randomMove();
+                this.enemy.draw(this.ctx)
+                this.enemy.randomMove();
                 this.dino.move(this.key);
-                this.collision(this.enemies, this.dino)
+                this.collision(this.enemy, this.dino)
             };
 
            if(this.dino.bomb){
@@ -92,9 +92,9 @@ export default class Game{
         if (this.dino.frameX < 1 && this.dino.moving) {
             this.dino.frameX++
         } else { this.dino.frameX = 0 }
-        if(this.enemies.frameX < 1){
-            this.enemies.frameX++
-        }else{this.enemies.frameX = 0}
+        if(this.enemy.frameX < 1){
+            this.enemy.frameX++
+        }else{this.enemy.frameX = 0}
     }
 
     collision(object1, object2) {
