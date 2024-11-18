@@ -40,47 +40,19 @@ export default class MovingObjects{
     }
 
     canMoveUp() {
-        let i = this.game.map.getRow(this.y)
-        let j = this.game.map.getCol(this.x)
-
-        if (i <= 4) {
-            return false
-        } else if (this.game.map.emptyTile(j, i-1)&&this.game.map.emptyTile(j+3, i-1)){
-            return true
-        }
+        return this.canMove(MovingObjects.Direction.up)
     }
 
     canMoveDown() {
-        let i = this.game.map.getRow(this.y)
-        let j = this.game.map.getCol(this.x)
-
-        if (i >= canvas.height/16 - 8) {
-            return false
-        } else if (this.game.map.emptyTile(j, i+4)&&this.game.map.emptyTile(j+3, i+4)){
-            return true
-        }
+        return this.canMove(MovingObjects.Direction.down)
     }
 
     canMoveLeft() {
-        let i = this.game.map.getRow(this.y)
-        let j = this.game.map.getCol(this.x)
-
-        if(j <= 4) {
-            return false
-        } else if (this.game.map.emptyTile(j-1, i)&&this.game.map.emptyTile(j-1, i+3)){
-            return true
-        }
+        return this.canMove(MovingObjects.Direction.left)
     }
 
     canMoveRight() {
-        let i = this.game.map.getRow(this.y)
-        let j = this.game.map.getCol(this.x)
-
-        if (j >= canvas.width/16 - 8) {
-            return false
-        } else if (this.game.map.emptyTile(j+4, i)&&this.game.map.emptyTile(j+4, i+3)){
-            return true
-        }
+        return this.canMove(MovingObjects.Direction.right)
     }
 
     emptyTile(x, y){

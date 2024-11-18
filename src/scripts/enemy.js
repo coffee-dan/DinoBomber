@@ -1,6 +1,5 @@
 import MovingObjects from "./movingObjects";
 export default class Enemy extends MovingObjects {
-
     constructor(object){
         super(object)
         this.speed = 16;
@@ -12,8 +11,7 @@ export default class Enemy extends MovingObjects {
         this.currentDir = 2;
     }
 
-    draw(ctx){
-
+    draw(ctx) {
         const enemySprite = new Image();
         enemySprite.addEventListener('load', ()=>{
             ctx.drawImage(enemySprite, this.width * this.frameX, this.height * this.frameY,
@@ -78,10 +76,10 @@ export default class Enemy extends MovingObjects {
 
     availableMoves() {
         const moves = []
-        if (this.canMove(Enemy.Direction.up)) {moves.push(Enemy.Direction.up)}
-        if (this.canMove(Enemy.Direction.down)) {moves.push(Enemy.Direction.down)}
-        if (this.canMove(Enemy.Direction.left)) {moves.push(Enemy.Direction.left)}
-        if (this.canMove(Enemy.Direction.right)) {moves.push(Enemy.Direction.right)}
+        if (this.canMoveUp()) {moves.push(Enemy.Direction.up)}
+        if (this.canMoveDown()) {moves.push(Enemy.Direction.down)}
+        if (this.canMoveLeft()) {moves.push(Enemy.Direction.left)}
+        if (this.canMoveRight()) {moves.push(Enemy.Direction.right)}
         return moves
     }
 }
